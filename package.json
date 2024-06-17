@@ -1,0 +1,47 @@
+{
+    "name": "@tenorok/tax-calc",
+    "version": "1.0.0",
+    "type": "module",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tenorok/tax-calc.git"
+    },
+    "engines": {
+        "node": "20.14.0",
+        "npm": "10.7.0"
+    },
+    "scripts": {
+        "prettier": "prettier --write .",
+        "task": "node ./tasksfile.js",
+        "prepare": "husky"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged && ./bin/task test --reporter=dot"
+        }
+    },
+    "author": {
+        "name": "Artem Kurbatov",
+        "email": "mail@tenorok.ru",
+        "homepage": "https://tenorok.ru"
+    },
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "7.13.0",
+        "@typescript-eslint/parser": "7.13.0",
+        "chai": "5.1.1",
+        "chokidar-cli": "3.0.0",
+        "eslint": "8.57.0",
+        "eslint-plugin-ascii": "1.0.0",
+        "eslint-plugin-mocha": "10.4.3",
+        "husky": "9.0.11",
+        "lint-staged": "15.2.7",
+        "madge": "7.0.0",
+        "mocha": "10.4.0",
+        "prettier": "3.3.2",
+        "source-map-support": "0.5.21",
+        "tasksfile": "5.1.1",
+        "ts-node": "10.9.2",
+        "tsconfig-paths": "4.2.0",
+        "typescript": "5.4.5"
+    }
+}

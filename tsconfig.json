@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "outDir": "dist",
+        "typeRoots": ["types", "node_modules/@types"],
+        /* Basic Options */
+        "target": "es2022",
+        "module": "ESNext",
+        "lib": ["es2022", "esnext.asynciterable"],
+        "declaration": true,
+        "sourceMap": true,
+        "incremental": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        /* Strict Type-Checking Options */
+        "strict": true,
+        /* Additional Checks */
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitOverride": true,
+        /* Module Resolution Options */
+        "moduleResolution": "Node",
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "esModuleInterop": true
+    },
+    "ts-node": {
+        "esm": true
+    }
+}

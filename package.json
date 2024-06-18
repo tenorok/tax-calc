@@ -13,12 +13,8 @@
     "scripts": {
         "prettier": "prettier --write .",
         "task": "node ./tasksfile.js",
-        "prepare": "husky"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged && ./bin/task test --reporter=dot"
-        }
+        "prepare": "husky && husky install",
+        "pre-commit": "lint-staged && ./bin/task test --reporter=dot"
     },
     "author": {
         "name": "Artem Kurbatov",
@@ -33,7 +29,7 @@
         "eslint": "8.57.0",
         "eslint-plugin-ascii": "1.0.0",
         "eslint-plugin-mocha": "10.4.3",
-        "husky": "9.0.11",
+        "husky": "8.0.3",
         "lint-staged": "15.2.7",
         "madge": "7.0.0",
         "mocha": "10.4.0",

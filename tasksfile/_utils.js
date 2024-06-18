@@ -13,7 +13,7 @@ class Command {
     constructor(cmd) {
         this.cmd = [cmd];
         this.envMap = new Map();
-        this.optionsMap = new Map();
+        this.options = [];
     }
 
     env(name, value) {
@@ -21,7 +21,7 @@ class Command {
     }
 
     option(name, value) {
-        this.optionsMap.set(name, value);
+        this.options.push([name, value]);
     }
 
     argument(value) {
@@ -36,7 +36,7 @@ class Command {
 
         cmd.push(...this.cmd);
 
-        for (const [name, value] of this.optionsMap) {
+        for (const [name, value] of this.options) {
             if (typeof value === 'undefined') {
                 cmd.push(name);
             } else {
@@ -48,10 +48,4 @@ class Command {
     }
 }
 
-export {
-    sh,
-    shPipe,
-    cli,
-    help,
-    Command,
-};
+export { sh, shPipe, cli, help, Command };

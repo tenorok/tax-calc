@@ -14,12 +14,6 @@ function runTest(options, testPath = 'test/') {
         cmd.env('TS_NODE_LOG_ERROR', 'true');
     }
 
-    // Обязательно должно идти первым, иначе ломаются карты кода
-    cmd.option('--require', 'source-map-support/register');
-
-    cmd.option('--require', '../node_modules/ts-node/register');
-    cmd.option('--require', 'tsconfig-paths/register');
-
     if (reporter) {
         cmd.option('--reporter', reporter);
     }

@@ -1,40 +1,22 @@
 {
     "parser": "@typescript-eslint/parser",
-    "plugins": [
-        "@typescript-eslint",
-        "mocha",
-        "ascii"
-    ],
+    "plugins": ["@typescript-eslint", "mocha", "ascii"],
     "env": {
         "es6": true,
         "node": true
     },
-    "extends": [
-        "eslint:recommended"
-    ],
+    "extends": ["eslint:recommended"],
     "parserOptions": {
         "ecmaVersion": 2022,
-        "sourceType": "module"
+        "sourceType": "module",
+        "project": ["./tsconfig.json"]
     },
     "rules": {
-        "comma-dangle": [
-            "error",
-            "always-multiline"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ],
-        "object-curly-spacing": [
-            "error",
-            "always"
-        ],
-        "no-return-await": [
-            "error"
-        ],
-        "require-await": [
-            "error"
-        ],
+        "comma-dangle": ["error", "always-multiline"],
+        "semi": ["error", "always"],
+        "object-curly-spacing": ["error", "always"],
+        "no-return-await": ["error"],
+        "require-await": ["error"],
         "comma-spacing": [
             "error",
             {
@@ -42,10 +24,7 @@
                 "after": true
             }
         ],
-        "quote-props": [
-            "error",
-            "as-needed"
-        ],
+        "quote-props": ["error", "as-needed"],
         "quotes": [
             "error",
             "single",
@@ -53,15 +32,9 @@
                 "avoidEscape": true
             }
         ],
-        "no-unused-expressions": [
-            "error"
-        ],
-        "default-param-last": [
-            "error"
-        ],
-        "dot-notation": [
-            "error"
-        ],
+        "no-unused-expressions": ["error"],
+        "default-param-last": ["error"],
+        "dot-notation": ["error"],
         "brace-style": [
             "error",
             "1tbs",
@@ -69,31 +42,16 @@
                 "allowSingleLine": true
             }
         ],
-        "func-call-spacing": [
-            "error"
-        ],
-        "no-dupe-class-members": [
-            "error"
-        ],
-        "no-duplicate-imports": [
-            "error"
-        ],
-        "no-redeclare": [
-            "error"
-        ],
-        "space-infix-ops": [
-            "error"
-        ],
-        "ascii/valid-name": [
-            "error"
-        ]
+        "func-call-spacing": ["error"],
+        "no-dupe-class-members": ["error"],
+        "no-duplicate-imports": ["error"],
+        "no-redeclare": ["error"],
+        "space-infix-ops": ["error"],
+        "ascii/valid-name": ["error"]
     },
     "overrides": [
         {
-            "files": [
-                "*.ts",
-                "*.tsx"
-            ],
+            "files": ["*.ts", "*.tsx"],
             "extends": [
                 "plugin:@typescript-eslint/recommended",
                 "plugin:@typescript-eslint/recommended-requiring-type-checking"
@@ -104,10 +62,6 @@
                 "@typescript-eslint/no-floating-promises": "off",
                 "@typescript-eslint/no-empty-interface": "off",
                 "@typescript-eslint/unbound-method": "off",
-                "no-duplicate-imports": "off",
-                "@typescript-eslint/no-duplicate-imports": [
-                    "error"
-                ],
                 "@typescript-eslint/no-unused-vars": [
                     "error",
                     {
@@ -115,15 +69,9 @@
                         "ignoreRestSiblings": true
                     }
                 ],
-                "@typescript-eslint/member-delimiter-style": [
-                    "error"
-                ],
-                "@typescript-eslint/member-ordering": [
-                    "error"
-                ],
-                "@typescript-eslint/adjacent-overload-signatures": [
-                    "error"
-                ],
+                "@typescript-eslint/member-delimiter-style": ["error"],
+                "@typescript-eslint/member-ordering": ["error"],
+                "@typescript-eslint/adjacent-overload-signatures": ["error"],
                 "@typescript-eslint/consistent-type-imports": [
                     "error",
                     {
@@ -136,9 +84,7 @@
                         "allowExpressions": true
                     }
                 ],
-                "@typescript-eslint/type-annotation-spacing": [
-                    "error"
-                ],
+                "@typescript-eslint/type-annotation-spacing": ["error"],
                 "@typescript-eslint/no-misused-promises": [
                     "error",
                     {
@@ -149,9 +95,7 @@
                     "error",
                     {
                         "selector": "interface",
-                        "format": [
-                            "PascalCase"
-                        ],
+                        "format": ["PascalCase"],
                         "custom": {
                             "regex": "^I[A-Z]",
                             "match": true
@@ -161,50 +105,26 @@
             }
         },
         {
-            "files": [
-                "*.d.ts"
-            ],
+            "files": ["*.d.ts"],
             "rules": {
-                "no-unused-vars": [
-                    "off"
-                ],
-                "@typescript-eslint/no-unused-vars": [
-                    "off"
-                ]
+                "no-unused-vars": ["off"],
+                "@typescript-eslint/no-unused-vars": ["off"]
             }
         },
         {
-            "files": [
-                "test/**/*.js"
-            ],
+            "files": ["test/**/*.js"],
             "env": {
                 "mocha": true
             },
             "rules": {
-                "mocha/handle-done-callback": [
-                    "error"
-                ],
-                "mocha/no-exclusive-tests": [
-                    "error"
-                ],
-                "mocha/no-global-tests": [
-                    "error"
-                ],
-                "mocha/no-identical-title": [
-                    "error"
-                ],
-                "mocha/no-nested-tests": [
-                    "error"
-                ],
-                "mocha/no-pending-tests": [
-                    "error"
-                ],
-                "mocha/no-sibling-hooks": [
-                    "error"
-                ],
-                "mocha/no-top-level-hooks": [
-                    "error"
-                ]
+                "mocha/handle-done-callback": ["error"],
+                "mocha/no-exclusive-tests": ["error"],
+                "mocha/no-global-tests": ["error"],
+                "mocha/no-identical-title": ["error"],
+                "mocha/no-nested-tests": ["error"],
+                "mocha/no-pending-tests": ["error"],
+                "mocha/no-sibling-hooks": ["error"],
+                "mocha/no-top-level-hooks": ["error"]
             }
         }
     ]

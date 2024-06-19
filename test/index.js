@@ -1,10 +1,11 @@
 import { assert } from 'chai';
 import { calcTax } from '../src/index.ts';
 import { scaleFlat } from '../src/scales/flat.ts';
+import { scaleProgressive2021 } from '../src/scales/progressive2021.ts';
 
 describe('tax-calc', () => {
     describe('flat', () => {
-        it('Зарплата с премией', () => {
+        it('Любой доход', () => {
             const result = calcTax({
                 income: [
                     [80_000],
@@ -39,7 +40,41 @@ describe('tax-calc', () => {
         });
     });
 
-    describe('progressive2021', () => {});
+    describe('progressive2021', () => {
+        it('Доход свыше 5 млн', () => {
+            const result = calcTax({
+                income: [
+                    [420_000],
+                    [420_000],
+                    [420_000],
+                    [420_000],
+                    [420_000, 500_000],
+                    [420_000],
+                    [420_000],
+                    [420_000],
+                    [420_000],
+                    [420_000],
+                    [420_000, 500_000],
+                    [420_000],
+                ],
+                calcTax: scaleProgressive2021,
+            });
+            assert.deepEqual(result, {
+                tax: [
+                    54_600, 54_600, 54_600, 54_600, 119_600, 54_600, 54_600,
+                    54_600, 54_600, 54_600, 132_000, 63_000,
+                ],
+                percent: [
+                    0.13, 0.13, 0.13, 0.13, 0.13, 0.13, 0.13, 0.13, 0.13, 0.13,
+                    0.14347826086956522, 0.15,
+                ],
+                cumulative: [
+                    54_600, 109_200, 163_800, 218_400, 338_000, 392_600,
+                    447_200, 501_800, 556_400, 611_000, 743_000, 806_000,
+                ],
+            });
+        });
+    });
 
     describe('progressive2024', () => {});
 });

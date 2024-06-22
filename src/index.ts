@@ -10,10 +10,8 @@ interface IOptions {
 interface IResult {
     /** Абсолютные суммы налогов по интервалам. */
     tax: number[];
-    /** Процент налогов по интервалам. */
+    /** Налоговые ставки по интервалам. */
     percent: number[];
-    /** Накопленная абсолютная сумма налога по интервалам. */
-    cumulative: number[];
 }
 
 export function calcTax(options: IOptions): IResult {
@@ -21,11 +19,9 @@ export function calcTax(options: IOptions): IResult {
 
     const tax: number[] = [];
     const percent: number[] = [];
-    const cumulative: number[] = [];
 
     let paidIncome: number = 0;
     let totalIncome: number = 0;
-    let cumulativeTax: number = 0;
 
     for (const interval of income) {
         for (const incomeItem of interval) {
@@ -33,11 +29,9 @@ export function calcTax(options: IOptions): IResult {
         }
 
         const [absTax, percentTax] = calcTax(paidIncome, totalIncome);
-        cumulativeTax += absTax;
 
         tax.push(absTax);
         percent.push(percentTax);
-        cumulative.push(cumulativeTax);
 
         paidIncome = totalIncome;
     }
@@ -45,6 +39,5 @@ export function calcTax(options: IOptions): IResult {
     return {
         tax,
         percent,
-        cumulative,
     };
 }

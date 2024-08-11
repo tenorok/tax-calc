@@ -6,7 +6,7 @@
         /* Basic Options */
         "target": "es2022",
         "module": "ESNext",
-        "lib": ["es2022", "esnext.asynciterable"],
+        "lib": ["es2022", "esnext.asynciterable", "DOM"],
         "declaration": true,
         "sourceMap": true,
         "incremental": true,
@@ -23,7 +23,8 @@
         "resolveJsonModule": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "jsx": "react"
     },
     "ts-node": {
         "esm": true

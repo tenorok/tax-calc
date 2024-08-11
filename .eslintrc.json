@@ -126,6 +126,12 @@
                 "mocha/no-sibling-hooks": ["error"],
                 "mocha/no-top-level-hooks": ["error"]
             }
+        },
+        {
+            "files": ["src/public/**/*.ts", "src/public/**/*.tsx"],
+            "globals": {
+                "window": "readonly"
+            }
         }
     ]
 }

@@ -1,23 +1,38 @@
 import React from 'react';
-import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { NextUIProvider } from '@nextui-org/system';
+import { ScaleSelector } from './ScaleSelector';
+import { Income } from './Income';
 
 export function Application(): React.JSX.Element {
     return (
-        <Container>
-            <Row>
-                <Col md={4}>
-                    <Form.Select aria-label="Default select example">
-                        <option>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </Form.Select>
-                </Col>
-                <Col md={8}>xs=6 md=4</Col>
-            </Row>
-        </Container>
+        <NextUIProvider>
+            <div className="container max-w-3xl mx-auto sm:px-11 text-small min-w-96">
+                <div className="min-h-screen p-4 flex flex-col justify-between">
+                    <div className="grid gap-4">
+                        <header>
+                            <h1 className="relative text-3xl max-sm:text-2xl">
+                                <div className="sm:absolute sm:-left-10 inline-block pr-2">
+                                    💸
+                                </div>
+                                Налоговый калькулятор
+                            </h1>
+                        </header>
+                        <section>
+                            <ScaleSelector />
+                        </section>
+                        <section>
+                            <Income />
+                        </section>
+                    </div>
+                    <footer>
+                        <div>
+                            Налоговый калькулятор для РФ ©
+                            {new Date().getFullYear()}
+                        </div>
+                        <div>Создан Артёмом Курбатовым </div>
+                    </footer>
+                </div>
+            </div>
+        </NextUIProvider>
     );
 }

@@ -1,3 +1,4 @@
 *.json
 *.md
 *.html
+src/public/index.css

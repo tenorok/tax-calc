@@ -10,10 +10,14 @@ function shPipe(cmd, options = {}) {
 }
 
 class Command {
-    constructor(cmd) {
+    constructor(cmd, config) {
         this.cmd = [cmd];
         this.envMap = new Map();
         this.options = [];
+        this.config = {
+            optionKeyValSep: '=',
+            ...config,
+        };
     }
 
     env(name, value) {
@@ -29,6 +33,8 @@ class Command {
     }
 
     get() {
+        const { optionKeyValSep } = this.config;
+
         const cmd = [];
         for (const [name, value] of this.envMap) {
             cmd.push(`${name}="${value}"`);
@@ -40,7 +46,7 @@ class Command {
             if (typeof value === 'undefined') {
                 cmd.push(name);
             } else {
-                cmd.push(`${name}="${value}"`);
+                cmd.push(`${name}${optionKeyValSep}"${value}"`);
             }
         }
 

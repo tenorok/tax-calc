@@ -21,7 +21,10 @@ function DescriptionContent(props: IProps): React.JSX.Element | string {
 
     const listItems = content.map(([range, percent]) => {
         return (
-            <li className="flex justify-between border-b-1 border-dotted mb-1 last:mb-2">
+            <li
+                className="flex justify-between border-b-1 border-dotted mb-1 last:mb-3"
+                key={range + percent}
+            >
                 <span className="relative top-1.5 bg-default-50 pr-0.5">
                     {range}
                 </span>

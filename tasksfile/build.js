@@ -22,6 +22,6 @@ export const build = {
 
 help(build.default, 'Build application for production mode', {
     options: {
-        open: 'Open http server with builded application',
+        open: 'Open builded application in browser',
     },
 });

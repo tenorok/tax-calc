@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Select, SelectItem } from '@nextui-org/select';
+import { Select, SelectItem } from '@nextui-org/react';
 import type { RootState } from '../store';
 import { changeScale } from '../features/tax/taxSlice';
 import { type TScale, scales, defaultScale } from '../const/scales';
@@ -23,7 +23,7 @@ export function ScaleSelector(): React.JSX.Element {
                 label="Шкала налогооблажения"
                 defaultSelectedKeys={[defaultScale]}
                 onChange={handleSelectionChange}
-                className="w-52"
+                className="w-56"
             >
                 {Object.entries(scales).map(([scale, { name }]) => (
                     <SelectItem key={scale}>{name}</SelectItem>

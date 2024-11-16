@@ -1,13 +1,12 @@
 import { sh, help, Command } from './_utils.js';
 
-function runTest(options, testPath = 'test/') {
-    const { skipts, reporter } = options;
+function runTest(options, testPath = 'test/**') {
+    const { skipts, reporter, watch } = options;
 
     const cmd = new Command('mocha');
 
     cmd.argument(testPath);
 
-    cmd.env('TS_NODE_FILES', 'true');
     cmd.env('NODE_ENV', 'testing');
 
     if (skipts) {
@@ -18,25 +17,11 @@ function runTest(options, testPath = 'test/') {
         cmd.option('--reporter', reporter);
     }
 
-    sh(cmd.get());
-}
-
-function runWatch(options, testPath = 'test/') {
-    const { skipts } = options;
-    const mask = testPath || 'test/**/*.js';
-    const path = testPath || 'test/';
-
-    const cmd = new Command('chokidar');
-
-    if (skipts) {
-        cmd.env('TS_NODE_LOG_ERROR', 'true');
+    if (watch) {
+        cmd.option('--watch');
+        cmd.option('--watch-files', testPath);
+        cmd.option('--watch-files', 'src/**/*.ts');
     }
-
-    cmd.argument('app/src/**/*.ts');
-    cmd.argument(mask);
-
-    cmd.option('-c', `task test --reporter=dot ${path}`);
-    cmd.option('--initial');
 
     sh(cmd.get());
 }
@@ -45,10 +30,6 @@ export const test = {
     default(options, testPath) {
         runTest(options, testPath);
     },
-
-    watch(options, testPath) {
-        runWatch(options, testPath);
-    },
 };
 
 help(test.default, 'Run unit tests', {
@@ -56,11 +37,6 @@ help(test.default, 'Run unit tests', {
     options: {
         reporter: 'Mocha reporter (npx mocha --list-reporters)',
         skipts: 'Logs TypeScript errors to stderr instead of throwing exceptions',
-    },
-});
-help(test.watch, 'Run unit tests on every changing', {
-    params: ['path'],
-    options: {
-        skipts: 'Logs TypeScript errors to stderr instead of throwing exceptions',
+        watch: 'Run tests in watch mode',
     },
 });

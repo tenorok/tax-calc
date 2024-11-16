@@ -1,5 +1,6 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { type TScale } from '../../const/scales';
+import { lsTextareaValueKey } from '../../const/localStorage';
 
 export interface ITaxState {
     scale: TScale;
@@ -8,7 +9,7 @@ export interface ITaxState {
 
 const initialState: ITaxState = {
     scale: 'progressive2024',
-    income: '',
+    income: localStorage.getItem(lsTextareaValueKey) ?? '',
 };
 
 export const taxSlice = createSlice({
@@ -18,9 +19,12 @@ export const taxSlice = createSlice({
         changeScale: (state, action: PayloadAction<TScale>) => {
             state.scale = action.payload;
         },
+        changeIncome: (state, action: PayloadAction<string>) => {
+            state.income = action.payload;
+        },
     },
 });
 
-export const { changeScale } = taxSlice.actions;
+export const { changeScale, changeIncome } = taxSlice.actions;
 
 export default taxSlice.reducer;

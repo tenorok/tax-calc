@@ -7,7 +7,7 @@ interface IOptions {
     calcTax: TCalcTaxScale;
 }
 
-interface IResult {
+export interface IResult {
     /** Абсолютные суммы налогов по интервалам. */
     tax: number[];
     /** Налоговые ставки по интервалам. */

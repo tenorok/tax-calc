@@ -25,7 +25,7 @@ export function Income(): React.JSX.Element {
         const content: React.ReactNode[] = [];
 
         for (let i = 1; i <= count; i++) {
-            const number = i.toLocaleString('en-US', {
+            const number = i.toLocaleString('ru-RU', {
                 minimumIntegerDigits: 2,
                 useGrouping: false,
             });

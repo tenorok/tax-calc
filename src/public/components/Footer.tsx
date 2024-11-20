@@ -4,7 +4,7 @@ import githubIcon from '../assets/github-mark.svg';
 
 export function Footer(): React.JSX.Element {
     return (
-        <footer className="flex gap-3">
+        <footer className="flex gap-3 justify-center mt-5">
             <Link href="https://github.com/tenorok/tax-calc" target="_blank">
                 <img src={githubIcon} alt="GitHub icon" className="size-9" />
             </Link>

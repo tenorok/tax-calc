@@ -7,7 +7,7 @@ export type TScale = 'flat' | 'progressive2021' | 'progressive2024';
 
 interface IScaleInfo {
     name: string;
-    description: string | string[][];
+    description: string | Array<[string, string]>;
     func: TCalcTaxScale;
 }
 

@@ -73,7 +73,7 @@ export function Income(): React.JSX.Element {
     return (
         <div className="grid gap-2">
             <h1 className="relative text-2xl max-sm:text-xl">Доход</h1>
-            <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-2">
+            <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-2 items-start">
                 <Textarea
                     startContent={startContent}
                     maxRows={Infinity}

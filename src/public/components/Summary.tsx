@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import type { RootState } from '../store';
 import { changeIncome } from '../features/tax/taxSlice';
 import { validateIncomeInput } from '../utils/income';
+import { formatRubles, formatPercent } from '../utils/format';
+import { Description } from './Description';
 
 export const incomeExample = [
     '120000,25000',
@@ -14,10 +16,21 @@ export const incomeExample = [
 export function Summary(): React.JSX.Element {
     const dispatch = useDispatch();
     const income = useSelector((state: RootState) => state.tax.income);
+    const { cumulativeClearIncome, cumulativeTaxValue, averageTaxPercent } =
+        useSelector((state: RootState) => state.summary);
 
     const onExampleClick = React.useCallback(() => {
         dispatch(changeIncome(incomeExample));
-    }, []);
+    }, [dispatch]);
+
+    const descriptionContent = React.useMemo<Array<[string, React.ReactNode]>>(
+        () => [
+            ['Совокупный доход', formatRubles(cumulativeClearIncome)],
+            ['Совокупный налог', formatRubles(cumulativeTaxValue)],
+            ['Средняя налоговая ставка', formatPercent(averageTaxPercent)],
+        ],
+        [averageTaxPercent, cumulativeClearIncome, cumulativeTaxValue],
+    );
 
     if (!income || !validateIncomeInput(income)) {
         return (
@@ -49,5 +62,5 @@ export function Summary(): React.JSX.Element {
         );
     }
 
-    return <>TODO: сводная информация</>;
+    return <Description content={descriptionContent} />;
 }

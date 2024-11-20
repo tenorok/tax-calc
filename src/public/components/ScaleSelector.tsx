@@ -14,7 +14,7 @@ export function ScaleSelector(): React.JSX.Element {
         (event: React.ChangeEvent<HTMLSelectElement>) => {
             dispatch(changeScale(event.target.value as TScale));
         },
-        [],
+        [dispatch],
     );
 
     return (

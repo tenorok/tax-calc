@@ -10,6 +10,7 @@ import {
 } from '@nextui-org/react';
 import { ClassList } from 'cnclasslist';
 import { type ITableItem } from '../utils/income';
+import { formatRubles, formatPercent } from '../utils/format';
 
 interface IProps {
     items: ITableItem[];
@@ -66,10 +67,6 @@ const columns = [
     },
 ];
 
-function formatRubles(value: number): React.ReactNode {
-    return <>{value.toLocaleString('ru-RU')}&nbsp;₽</>;
-}
-
 export function TaxTable(props: IProps): React.JSX.Element {
     const items = React.useMemo(
         () =>
@@ -80,7 +77,7 @@ export function TaxTable(props: IProps): React.JSX.Element {
                 }),
                 clearIncome: formatRubles(item.clearIncome),
                 cumulativeClearIncome: formatRubles(item.cumulativeClearIncome),
-                taxPercent: item.taxPercent.toFixed(2) + '%',
+                taxPercent: formatPercent(item.taxPercent),
                 taxValue: formatRubles(item.taxValue),
                 cumulativeTaxValue: formatRubles(item.cumulativeTaxValue),
             })),
@@ -88,7 +85,7 @@ export function TaxTable(props: IProps): React.JSX.Element {
     );
 
     return (
-        <Table aria-label="Таблица доходов и налогов">
+        <Table aria-label="Таблица доходов и налогов" className="mt-3">
             <TableHeader columns={columns}>
                 {(column) => (
                     <TableColumn key={column.key} className="text-center">

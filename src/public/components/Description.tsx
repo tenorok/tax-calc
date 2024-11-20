@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface IProps {
-    content: string | string[][];
+    content: string | Array<[string, string | React.ReactNode]>;
 }
 
 export function Description(props: IProps): React.JSX.Element {
@@ -19,17 +19,17 @@ function DescriptionContent(props: IProps): React.JSX.Element | string {
         return content;
     }
 
-    const listItems = content.map(([range, percent]) => {
+    const listItems = content.map(([key, value]) => {
         return (
             <li
                 className="flex justify-between border-b-1 border-dotted mb-1 last:mb-3"
-                key={range + percent}
+                key={key}
             >
                 <span className="relative top-1.5 bg-default-50 pr-0.5">
-                    {range}
+                    {key}
                 </span>
                 <span className="relative top-1.5 bg-default-50 pl-0.5">
-                    {percent}
+                    {value}
                 </span>
             </li>
         );

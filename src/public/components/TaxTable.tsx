@@ -11,18 +11,28 @@ import {
 import { ClassList } from 'cnclasslist';
 import { type ITableItem } from '../utils/income';
 import { formatRubles, formatPercent } from '../utils/format';
+import { ButtonCopyColumn } from './ButtonCopyColumn';
 
 interface IProps {
     items: ITableItem[];
 }
 
+enum EColumnsKeys {
+    Index = 'index',
+    ClearIncome = 'clearIncome',
+    CumulativeClearIncome = 'cumulativeClearIncome',
+    TaxPercent = 'taxPercent',
+    TaxValue = 'taxValue',
+    CumulativeTaxValue = 'cumulativeTaxValue',
+}
+
 const columns = [
     {
-        key: 'index',
+        key: EColumnsKeys.Index,
         label: '',
     },
     {
-        key: 'clearIncome',
+        key: EColumnsKeys.ClearIncome,
         label: (
             <>
                 Доход
@@ -32,7 +42,7 @@ const columns = [
         ),
     },
     {
-        key: 'cumulativeClearIncome',
+        key: EColumnsKeys.CumulativeClearIncome,
         label: (
             <>
                 Накопленный доход
@@ -42,7 +52,7 @@ const columns = [
         ),
     },
     {
-        key: 'taxPercent',
+        key: EColumnsKeys.TaxPercent,
         label: (
             <>
                 Налоговая
@@ -52,11 +62,11 @@ const columns = [
         ),
     },
     {
-        key: 'taxValue',
+        key: EColumnsKeys.TaxValue,
         label: <>Налог</>,
     },
     {
-        key: 'cumulativeTaxValue',
+        key: EColumnsKeys.CumulativeTaxValue,
         label: (
             <>
                 Накопленный
@@ -65,6 +75,12 @@ const columns = [
             </>
         ),
     },
+];
+
+const maxSmHiddenColumns = [
+    EColumnsKeys.Index,
+    EColumnsKeys.CumulativeClearIncome,
+    EColumnsKeys.CumulativeTaxValue,
 ];
 
 export function TaxTable(props: IProps): React.JSX.Element {
@@ -87,24 +103,47 @@ export function TaxTable(props: IProps): React.JSX.Element {
     return (
         <Table aria-label="Таблица доходов и налогов" className="mt-3">
             <TableHeader columns={columns}>
-                {(column) => (
-                    <TableColumn key={column.key} className="text-center">
-                        {column.label}
-                    </TableColumn>
-                )}
+                {columns.map(({ key, label }) => {
+                    const classList = new ClassList('text-center px-0.5');
+                    if (maxSmHiddenColumns.includes(key)) {
+                        classList.add('max-sm:hidden');
+                    }
+
+                    return (
+                        <TableColumn key={key} className={classList.toString()}>
+                            <div className="flex justify-center items-center group/column cursor-default">
+                                {label}
+                                {key !== EColumnsKeys.Index ? (
+                                    <ButtonCopyColumn
+                                        values={props.items.map(
+                                            (item) => item[key],
+                                        )}
+                                        className="group-hover/column:opacity-50"
+                                    />
+                                ) : null}
+                            </div>
+                        </TableColumn>
+                    );
+                })}
             </TableHeader>
-            <TableBody items={items}>
+            <TableBody items={items} emptyContent="Нет доходов для расчёта.">
                 {(item) => (
                     <TableRow key={item.index}>
-                        {(columnKey) => {
-                            const classList = new ClassList('text-right');
-                            if (columnKey === 'index') {
+                        {(key) => {
+                            const classList = new ClassList('text-center');
+                            if (key === EColumnsKeys.Index) {
                                 classList.add('text-neutral-400');
+                            }
+
+                            if (
+                                maxSmHiddenColumns.includes(key as EColumnsKeys)
+                            ) {
+                                classList.add('max-sm:hidden');
                             }
 
                             return (
                                 <TableCell className={classList.toString()}>
-                                    {getKeyValue(item, columnKey)}
+                                    {getKeyValue(item, key)}
                                 </TableCell>
                             );
                         }}

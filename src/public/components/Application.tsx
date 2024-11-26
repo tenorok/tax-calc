@@ -80,7 +80,7 @@ export function Application(): React.JSX.Element {
                         <section>
                             <Income />
                         </section>
-                        <section>
+                        <section className="max-w-full overflow-auto p-1">
                             <TaxTable items={tableItems} />
                         </section>
                     </main>

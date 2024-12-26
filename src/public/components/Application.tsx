@@ -16,6 +16,7 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 import { Income } from './Income';
 import { TaxTable } from './TaxTable';
+import { TaxChart } from './TaxChart';
 
 export function Application(): React.JSX.Element {
     const { scale, income: incomeInput } = useSelector(
@@ -82,6 +83,9 @@ export function Application(): React.JSX.Element {
                         </section>
                         <section className="max-w-full overflow-auto p-1">
                             <TaxTable items={tableItems} />
+                        </section>
+                        <section className="max-w-full overflow-auto p-1">
+                            <TaxChart items={tableItems} />
                         </section>
                     </main>
                     <Footer />

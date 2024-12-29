@@ -12,6 +12,7 @@ import {
 } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
 import { type ITableItem } from '../utils/income';
+import { getLabels } from '../utils/labels';
 
 interface IProps {
     items: ITableItem[];
@@ -28,21 +29,6 @@ ChartJS.register(
     Legend,
 );
 
-const labels = [
-    'Янв',
-    'Фев',
-    'Мар',
-    'Апр',
-    'Май',
-    'Июн',
-    'Июл',
-    'Авг',
-    'Сен',
-    'Окт',
-    'Ноя',
-    'Дек',
-];
-
 type TChartData = Pick<React.ComponentProps<typeof Chart>, 'data'>['data'];
 
 export function TaxChart(props: IProps): React.ReactNode {
@@ -50,7 +36,7 @@ export function TaxChart(props: IProps): React.ReactNode {
 
     const data = React.useMemo<TChartData>(
         () => ({
-            labels,
+            labels: getLabels(items.length),
             datasets: [
                 {
                     type: 'bar',

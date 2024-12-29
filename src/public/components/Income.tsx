@@ -4,6 +4,7 @@ import { Textarea } from '@nextui-org/react';
 import type { RootState } from '../store';
 import { changeIncome } from '../features/tax/taxSlice';
 import { validateIncomeInput } from '../utils/income';
+import { getLabels } from '../utils/labels';
 import { lsTextareaValueKey } from '../const/localStorage';
 import { Summary, incomeExample } from './Summary';
 
@@ -24,11 +25,8 @@ export function Income(): React.JSX.Element {
         const count = income.split('\n').length;
         const content: React.ReactNode[] = [];
 
-        for (let i = 1; i <= count; i++) {
-            const number = i.toLocaleString('ru-RU', {
-                minimumIntegerDigits: 2,
-                useGrouping: false,
-            });
+        for (let i = 0; i < count; i++) {
+            const number = getLabels(count, i);
 
             content.push(
                 <span key={number}>
@@ -49,7 +47,7 @@ export function Income(): React.JSX.Element {
         (event: React.ChangeEvent<HTMLInputElement>) => {
             dispatch(changeIncome(event.target.value));
         },
-        [],
+        [dispatch],
     );
 
     const onFocus = React.useCallback(() => {

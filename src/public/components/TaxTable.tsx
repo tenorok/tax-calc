@@ -11,6 +11,7 @@ import {
 import { ClassList } from 'cnclasslist';
 import { type ITableItem } from '../utils/income';
 import { formatRubles, formatPercent } from '../utils/format';
+import { getLabels } from '../utils/labels';
 import { ButtonCopyColumn } from './ButtonCopyColumn';
 
 interface IProps {
@@ -86,11 +87,8 @@ const maxSmHiddenColumns = [
 export function TaxTable(props: IProps): React.JSX.Element {
     const items = React.useMemo(
         () =>
-            props.items.map((item, index) => ({
-                index: (index + 1).toLocaleString('ru-RU', {
-                    minimumIntegerDigits: 2,
-                    useGrouping: false,
-                }),
+            props.items.map((item, index, list) => ({
+                index: getLabels(list.length, index),
                 clearIncome: formatRubles(item.clearIncome),
                 cumulativeClearIncome: formatRubles(item.cumulativeClearIncome),
                 taxPercent: formatPercent(item.taxPercent),

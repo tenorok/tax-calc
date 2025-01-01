@@ -81,7 +81,7 @@ export function TaxChart(props: IProps): React.ReactNode {
         <Chart
             type="line"
             options={{
-                aspectRatio: 4 / 3,
+                maintainAspectRatio: false,
                 scales: {
                     y: {
                         position: 'right',

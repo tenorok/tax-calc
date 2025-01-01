@@ -84,7 +84,7 @@ export function Application(): React.JSX.Element {
                         <section className="max-w-full overflow-auto p-1">
                             <TaxTable items={tableItems} />
                         </section>
-                        <section className="max-w-full overflow-auto p-1">
+                        <section className="max-w-full overflow-auto p-1 h-96">
                             <TaxChart items={tableItems} />
                         </section>
                     </main>

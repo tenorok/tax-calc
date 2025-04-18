@@ -9,7 +9,7 @@ import { lsTextareaValueKey } from '../const/localStorage';
 import { Summary, incomeExample } from './Summary';
 
 const textAreaClassNames = {
-    input: 'font-mono text-small',
+    input: 'font-mono text-small overflow-x-auto whitespace-nowrap',
 };
 
 export function Income(): React.JSX.Element {
@@ -59,7 +59,7 @@ export function Income(): React.JSX.Element {
     }, []);
 
     const validate = React.useCallback((value: string) => {
-        return validateIncomeInput(value) ? true : 'Нужно ввести числа';
+        return validateIncomeInput(value) ? true : 'Нужно ввести целые числа';
     }, []);
 
     React.useEffect(() => {

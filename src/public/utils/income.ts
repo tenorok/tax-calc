@@ -12,8 +12,19 @@ export function parseIncomeInput(value: string): number[][] {
     const result: number[][] = [];
 
     for (const line of value.split('\n')) {
-        const numbers = line.split(/,\s*/).map(Number);
-        result.push(numbers);
+        const items = line.split(/,\s*/);
+        const numbers: number[] = [];
+
+        for (const item of items) {
+            const number = parseFloat(item);
+            if (!Number.isNaN(number)) {
+                numbers.push(number);
+            }
+        }
+
+        if (numbers.length) {
+            result.push(numbers);
+        }
     }
 
     return result;
@@ -47,7 +58,7 @@ export function calcTableData({
 
     for (let i = 0; i < income.length; i++) {
         const incomeItem = income[i].reduce((acc, item) => acc + item, 0);
-        const taxValue = tax[i];
+        const taxValue = Math.floor(tax[i]);
         const taxPercent = percent[i];
         const clearIncome = incomeItem - taxValue;
         cumulativeTaxValue += taxValue;

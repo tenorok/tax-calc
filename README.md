@@ -9,3 +9,16 @@
 ---
 
 [![внешний вид калькулятора](./assets/preview.png)](https://tenorok.github.io/tax-calc/)
+
+## Про разработку
+
+**Доступные команды** описаны в хелпе: `task --help`:
+
+-   локальный запуск: `task start`
+-   запуск тестов: `task test`
+
+**Выкладка:**
+
+1. `git checkout gh-pages`
+1. `task build`
+1. `git commit && push`
